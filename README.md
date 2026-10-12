@@ -8,7 +8,6 @@ A teaching repository for test automation using the **Page Object Model (POM)** 
 - How to write pytest test cases.
 - How to use Playwright for browser automation.
 - How to apply the Page Object Model pattern to keep tests maintainable.
-- How to run tests locally and in CI.
 
 ## Tech stack
 
