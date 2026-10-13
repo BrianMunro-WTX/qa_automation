@@ -16,5 +16,9 @@ playwright/.cache/
 .vscode/
 .idea/
 
+#Personal
+*/lesson_plan.md
+*/playwright_cheatsheet.md
+
 # OS
 .DS_Store
