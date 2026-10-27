@@ -1,6 +1,6 @@
 """Page Object for the inventory page."""
 
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 from pages.base_page import BasePage
 
@@ -13,6 +13,8 @@ class InventoryPage(BasePage):
     INVENTORY_LIST = "[data-test='inventory-list']"
     SHOPPING_CART_BADGE = "[data-test='shopping-cart-badge']"
     ADD_TO_CART_BUTTON = "button[data-test^='add-to-cart']"
+    MENU_BUTTON = "#react-burger-menu-btn"
+    LOGOUT_LINK = "[data-test='logout-sidebar-link']"
 
     def __init__(self, page: Page, base_url: str) -> None:
         super().__init__(page, base_url)
@@ -36,6 +38,15 @@ class InventoryPage(BasePage):
         """Add the first product in the list to the cart."""
         self.page.locator(self.ADD_TO_CART_BUTTON).first.click()
         return self
+
+    def logout(self) -> None:
+        """Open the side menu and log out."""
+        self.click(self.MENU_BUTTON)
+        self.click(self.LOGOUT_LINK)
+
+    def expect_inventory_hidden(self) -> None:
+        """Assert the product list is not displayed."""
+        expect(self.page.locator(self.INVENTORY_LIST)).to_have_count(0)
 
     def expect_cart_count(self, count: int) -> None:
         """Assert the shopping cart badge shows the expected count."""

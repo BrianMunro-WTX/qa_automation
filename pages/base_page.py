@@ -19,6 +19,16 @@ class BasePage:
         self.page.goto(f"{self.base_url}/{path}".rstrip("/"))
         return self
 
+    def reload(self) -> "BasePage":
+        """Reload the current page."""
+        self.page.reload()
+        return self
+
+    def go_back(self) -> "BasePage":
+        """Use the browser's Back button."""
+        self.page.go_back()
+        return self
+
     def get_title(self) -> str:
         """Return the current page title."""
         return self.page.title()
